@@ -1,4 +1,4 @@
-package src;
+package src.products;
 
 public class Products {
     public void create_product() {

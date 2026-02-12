@@ -1,4 +1,4 @@
-import src.Products;
+import src.products.Products;
 
 public class App {
     public static void main(String[] args) {
