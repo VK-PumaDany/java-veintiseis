@@ -8,7 +8,7 @@ public class App {
 
         // Al estar en la misma carpeta, App ya sabe quién es Products
         Products cellPhone = new Products();
-        cellPhone.create_product();
+        cellPhone.createProduct();
 
         listProducts.add(cellPhone);
 
