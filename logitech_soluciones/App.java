@@ -1,18 +1,17 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
-import src.products.Products;
+import src.controller.productControl.*;
 
 public class App {
     public static void main(String[] args) {
-        ArrayList<Products> listProducts = new ArrayList<Products>();
+        Scanner scan = new Scanner(System.in);
+        ProductController newProduct = new ProductController();
 
-        // Al estar en la misma carpeta, App ya sabe quién es Products
-        Products cellPhone = new Products();
-        cellPhone.createProduct();
-
-        listProducts.add(cellPhone);
-
-        System.out.print(listProducts);
+        for (int i = 0; i < 2; i++) {
+            newProduct.create(scan);
+        }
+        scan.close();
+        newProduct.allProduct();
 
     }
 }
