@@ -25,5 +25,4 @@ public class Product {
         this.unitPrecie = price;
         this.inventoryStock = stock;
     }
-
 }

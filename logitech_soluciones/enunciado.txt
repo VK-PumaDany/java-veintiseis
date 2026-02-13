@@ -11,8 +11,24 @@ cantidad disponible en el inventario,
 
 Crear
 el sistema debe permitir actualizar existencias, validar que no se pueda realizar despachos si no hay stock suficiente, realizar consulta de productos con bajo nivel de inventario. 
-2. Gestion de proveedores cada proveedor tendra nombre,nit,telefono y lista de productos suministrados el sistema debe permitir asociar productos a proveedores y registrar ordenes de compra para reposicion de inventario
-3. Gestion de ordenes de despacho una orden de despacho debe incluir numero de orden, fecha,lista de productos y cantidades de solicitadas y estado que puede ser pendiente,despachada o cancelada nose debe permitir despachar una orden si algun producto no tiene suficiente stock al confirmar el despacho el sistema debe descontar automaticamente las cantidades del inventario se debe calcular el valor total de la orden.
+2. Gestion de proveedores cada proveedor tendra 
+
+nombre, 
+nit,
+telefono 
+y lista de productos suministrados 
+
+el sistema debe permitir asociar productos a proveedores y registrar ordenes de compra para reposicion de inventario
+
+3.Gestion de ordenes de despacho una orden de despacho debe 
+incluir numero de orden, 
+fecha, lista de productos 
+y 
+cantidades de solicitadas 
+y 
+estado que puede ser pendiente,despachada o cancelada 
+nose debe permitir despachar una orden si algun producto no tiene suficiente stock al confirmar el despacho el sistema debe descontar automaticamente las cantidades del inventario se debe calcular el valor total de la orden.
+
 3. Reportes del sistema el sistema debe generar el listado de productos con inventario bajo, el historial de ordenes despachadas el valor total de las ventas realizadas en un periodo y el producto mas vendido
 
 codigo unico = Math.random

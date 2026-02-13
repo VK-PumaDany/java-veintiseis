@@ -1,0 +1,3 @@
+{
+  "command": "javac -d bin src/**/*.java App.java && java -cp bin App"
+}

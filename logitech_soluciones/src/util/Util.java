@@ -5,4 +5,5 @@ public class Util {
         int randomNum = (int) (Math.random() * max);
         return randomNum;
     }
+    
 }
