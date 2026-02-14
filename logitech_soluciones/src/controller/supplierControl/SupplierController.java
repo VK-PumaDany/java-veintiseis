@@ -13,6 +13,18 @@ public class SupplierController {
         this.listSupplier = new ArrayList<Supplier>();
     }
 
+    public Supplier getSupplierByNit(int nit) {
+        Supplier searchSupplier;
+        for (int i = 0; i <= this.listSupplier.size(); i++) {
+            Supplier inSupplier = this.listSupplier.get(i);
+            if (inSupplier.nit == nit) {
+                searchSupplier = inSupplier;
+                break;
+            }
+        }
+        return searchSupplier;
+    }
+
     public void create(Scanner scan) {
 
         Supplier newSupplier = new Supplier();
