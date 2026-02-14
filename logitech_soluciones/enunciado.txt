@@ -21,9 +21,10 @@ y lista de productos suministrados
 el sistema debe permitir asociar productos a proveedores y registrar ordenes de compra para reposicion de inventario
 
 3.Gestion de ordenes de despacho una orden de despacho debe 
-incluir numero de orden, 
-fecha, lista de productos 
-y 
+incluir 
+numero de orden, 
+fecha, 
+lista de productos y 
 cantidades de solicitadas 
 y 
 estado que puede ser pendiente,despachada o cancelada 

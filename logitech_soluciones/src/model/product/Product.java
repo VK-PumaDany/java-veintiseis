@@ -7,6 +7,8 @@ public class Product {
     public int unitPrecie;
     public int inventoryStock;
 
+    private int nitSupplier;
+
     public int getUniqueCode() {
         return this.uniqueCode;
     }
@@ -25,4 +27,13 @@ public class Product {
         this.unitPrecie = price;
         this.inventoryStock = stock;
     }
+
+    public int getNitSupplier() {
+        return this.nitSupplier;
+    }
+
+    public void setNitSupplier(int nitSupplier) {
+        this.nitSupplier = nitSupplier;
+    }
+
 }
