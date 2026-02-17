@@ -16,7 +16,7 @@ public class ProductController {
         // this.nameProductGloba = "Nombre de producto global";
     }
 
-    public void create(Scanner scan) {
+    public void create(Scanner scan, int nitSupplier) {
         // Scanner scan = new Scanner(System.in);
         Product newProduct = new Product();
         // Atributos
@@ -24,9 +24,10 @@ public class ProductController {
         Util utils = new Util();
         int unique_code = utils.numRandom(100000);
         System.out.println("Código generado del producto: " + unique_code);
-        scan.nextLine();
+
         System.out.println("Ingrese el nombre del producto: ");
         String nameProduct = scan.nextLine();
+        scan.nextLine();
 
         System.out.println("Ingrese el nombre de la categoria: ");
         String category = scan.nextLine();
@@ -39,7 +40,9 @@ public class ProductController {
 
         newProduct.setUniqueCode(unique_code);
         newProduct.setProduct(nameProduct, category, unitPrecie, inventoryStock);
+        System.out.println("Cantidad de productos: ");
 
+        newProduct.setNitSupplier(nitSupplier);
         this.listProducts.add(newProduct);
     }
 
@@ -49,5 +52,19 @@ public class ProductController {
             System.out.println(
                     "Nombre " + product.nameProduct + "Categoria " + product.category + "Precio " + product.unitPrecie);
         }
+    }
+
+    public void showProductsByNit(int nit) {
+        System.out.println("Mostrando todos los productos: ");
+        for (Product product : this.listProducts) {
+            if (product.getNitSupplier() == nit)
+                System.out.println(
+                        "Nombre " + product.nameProduct + "Categoria " + product.category + "Precio "
+                                + product.unitPrecie);
+        }
+    }
+
+    public void subtractStock(){
+        
     }
 }

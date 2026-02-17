@@ -36,4 +36,11 @@ public class Product {
         this.nitSupplier = nitSupplier;
     }
 
+    public int getInventoryStock() {
+        return this.inventoryStock;
+    }
+
+    public void setInventoryStock(int stock) {
+        this.inventoryStock = stock;
+    }
 }

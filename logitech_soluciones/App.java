@@ -9,18 +9,23 @@ public class App {
         ProductController newProduct = new ProductController();
         SupplierController newSupplier = new SupplierController();
 
-        for (int i = 0; i < 3; i++) {
+        // Crear empresas provedoras
+        for (int i = 0; i < 2; i++) {
+            System.out.println("\n");
             newSupplier.create(scan);
         }
-
-        // for (int i = 0; i < 2; i++) {
-        // newProduct.create(scan);
-        // }
-
+        // Buscar nit de la empresa y asignarle el nit a al nuevo prodcut
         for (int i = 0; i < 3; i++) {
-            System.out.println("Ingrese el nit a buscar: ");
+            System.out.println("\n Ingrese el nit para referenciar el producto: ");
             int nit = scan.nextInt();
-            System.out.println(newSupplier.getSupplierByNit(nit).name);
+            scan.nextLine();
+            newProduct.create(scan, newSupplier.getSupplierByNit(nit).nit);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            System.out.println("\n Ingrese el nit para mostrar los productos: ");
+            int nit = scan.nextInt();
+            newProduct.showProductsByNit(nit);
         }
 
         scan.close();
