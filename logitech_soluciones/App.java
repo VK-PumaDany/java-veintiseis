@@ -9,13 +9,20 @@ public class App {
         ProductController newProduct = new ProductController();
         SupplierController newSupplier = new SupplierController();
 
-        newSupplier.create(scan);
-
-        newSupplier.listSupplier
-
-        for (int i = 0; i < 2; i++) {
-            newProduct.create(scan);
+        for (int i = 0; i < 3; i++) {
+            newSupplier.create(scan);
         }
+
+        // for (int i = 0; i < 2; i++) {
+        // newProduct.create(scan);
+        // }
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Ingrese el nit a buscar: ");
+            int nit = scan.nextInt();
+            System.out.println(newSupplier.getSupplierByNit(nit).name);
+        }
+
         scan.close();
         newProduct.allProduct();
 

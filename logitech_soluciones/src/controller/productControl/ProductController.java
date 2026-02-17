@@ -23,8 +23,8 @@ public class ProductController {
 
         Util utils = new Util();
         int unique_code = utils.numRandom(100000);
-
         System.out.println("Código generado del producto: " + unique_code);
+        scan.nextLine();
         System.out.println("Ingrese el nombre del producto: ");
         String nameProduct = scan.nextLine();
 
@@ -39,7 +39,7 @@ public class ProductController {
 
         newProduct.setUniqueCode(unique_code);
         newProduct.setProduct(nameProduct, category, unitPrecie, inventoryStock);
-        
+
         this.listProducts.add(newProduct);
     }
 
