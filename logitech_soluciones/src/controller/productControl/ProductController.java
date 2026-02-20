@@ -25,9 +25,9 @@ public class ProductController {
         int unique_code = utils.numRandom(100000);
         System.out.println("Código generado del producto: " + unique_code);
 
+        scan.nextLine();
         System.out.println("Ingrese el nombre del producto: ");
         String nameProduct = scan.nextLine();
-        scan.nextLine();
 
         System.out.println("Ingrese el nombre de la categoria: ");
         String category = scan.nextLine();
@@ -54,17 +54,32 @@ public class ProductController {
         }
     }
 
-    public void showProductsByNit(int nit) {
-        System.out.println("Mostrando todos los productos: ");
+    public void showAllProducts() {
+        showAllProducts(this.listProducts);
+    }
+
+    public void showAllProducts(List<Product> list) {
         for (Product product : this.listProducts) {
-            if (product.getNitSupplier() == nit)
-                System.out.println(
-                        "Nombre " + product.nameProduct + "Categoria " + product.category + "Precio "
-                                + product.unitPrecie);
+            System.out.println(
+                    "Nombre " + product.nameProduct + " Categoria " + product.category + " Precio "
+                            + product.unitPrecie + " Stock " + product.inventoryStock);
         }
     }
 
-    public void subtractStock(){
-        
+    public void showProductsByNit(int nit) {
+        List<Product> productsFound = this.listProducts.stream()
+                .filter(p -> p.getNitSupplier() == nit)
+                .toList();
+
+        if (productsFound.isEmpty()) {
+            System.out.println("No se encontraron productos para el NIT: " + nit);
+        } else {
+            showAllProducts(productsFound);
+        }
+    }
+
+    public void subtractStock(int uniqueCode, int valueSubtract) {
+        Product productFound = this.listProducts.stream().filter(prod -> prod.getUniqueCode() == uniqueCode).findAny();
+
     }
 }

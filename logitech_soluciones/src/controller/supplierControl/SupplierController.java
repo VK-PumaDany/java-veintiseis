@@ -15,7 +15,7 @@ public class SupplierController {
 
     public Supplier getSupplierByNit(int nit) {
         Supplier foundSupplier = null;
-        for (int i = 0; i <= this.listSupplier.size(); i++) {
+        for (int i = 0; i < this.listSupplier.size(); i++) {
             Supplier findSupplier = this.listSupplier.get(i);
             if (findSupplier.nit == nit) {
                 foundSupplier = findSupplier;
@@ -32,7 +32,6 @@ public class SupplierController {
         System.out.println("Ingrese el nit de la empresa provedora: ");
         int nit = scan.nextInt();
         scan.nextLine();
-
         System.out.println("Ingrese el nombre de la empresa: ");
         String name = scan.nextLine();
 
