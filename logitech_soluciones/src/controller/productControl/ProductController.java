@@ -78,8 +78,13 @@ public class ProductController {
         }
     }
 
-    public void subtractStock(int uniqueCode, int valueSubtract) {
-        Product productFound = this.listProducts.stream().filter(prod -> prod.getUniqueCode() == uniqueCode).findAny();
-
+    public void subtractStock() {
+        // Product productFound1 = this.listProducts.stream().filter(prod -> prod.getUniqueCode() == uniqueCode).findAny();
+        int uniqueCodeInsert = 1000; 
+        for(Product productFound : this.listProducts) {
+            if(productFound.getUniqueCode() == uniqueCode) {
+                
+            }
+        }
     }
 }
