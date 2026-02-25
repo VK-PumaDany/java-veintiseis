@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import src.controller.orderControl.OrderController;
 import src.controller.productControl.*;
 import src.controller.supplierControl.SupplierController;
 
@@ -8,15 +9,18 @@ public class App {
         Scanner scan = new Scanner(System.in);
         ProductController newProduct = new ProductController();
         SupplierController newSupplier = new SupplierController();
+        OrderController newOrder = new OrderController();
 
         int opcion;
 
         do {
             System.out.println("\n--- SISTEMA DE GESTIÓN LOGITECH ---");
             System.out.println("1. Registrar Proveedores");
-            System.out.println("2. Registrar Productos (vincular a NIT)");
-            System.out.println("3. Ver Productos por NIT");
-            System.out.println("4. Mostrar todos los Productos");
+            System.out.println("2. Mostrar Proveedores");
+            System.out.println("3. Registrar Productos (vincular a NIT)");
+            System.out.println("4. Ver Productos por NIT");
+            System.out.println("5. Mostrar todos los Productos");
+            System.out.println("6. Crear una nueva orden");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -29,8 +33,12 @@ public class App {
                     // Puedes decidir cuántos registrar o pedirlo al usuario
                     newSupplier.create(scan);
                     break;
-
                 case 2:
+                    System.out.println("\n--- Mostrando Proveedores ---");
+                    // Puedes decidir cuántos registrar o pedirlo al usuario
+                    newSupplier.showAllSuppliers();
+                    break;
+                case 3:
                     System.out.println("\n--- Registro de Productos ---");
                     System.out.print("Ingrese el NIT del proveedor para referenciar el producto: ");
                     int nitProd = scan.nextInt();
@@ -43,16 +51,20 @@ public class App {
                     }
                     break;
 
-                case 3:
+                case 4:
                     System.out.println("\n--- Búsqueda por NIT ---");
                     System.out.print("Ingrese el NIT para mostrar los productos: ");
                     int nitBusqueda = scan.nextInt();
                     newProduct.showProductsByNit(nitBusqueda);
                     break;
 
-                case 4:
+                case 5:
                     System.out.println("\n--- Inventario Total ---");
-                    newProduct.allProduct();
+                    newProduct.showAllProducts();
+                    break;
+                case 6:
+                    System.out.println("\n--- Crear nueva Orden ---");
+                    newOrder.create(scan, newProduct);
                     break;
 
                 case 0:

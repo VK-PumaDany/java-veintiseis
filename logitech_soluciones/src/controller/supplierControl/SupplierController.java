@@ -43,4 +43,16 @@ public class SupplierController {
         this.listSupplier.add(newSupplier);
     }
 
+    public void showAllSuppliers() {
+        if (this.listSupplier.isEmpty()) {
+            System.out.println("No hay proveedores creados: ");
+            return;
+        }
+
+        for (Supplier supplier : this.listSupplier) {
+            System.out.println(
+                    "--- Nit: " + supplier.nit + ", Nombre: " + supplier.name + ", Telefono: " + supplier.cellPhone
+                            + " ---");
+        }
+    }
 }
