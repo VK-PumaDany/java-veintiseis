@@ -51,7 +51,7 @@ public class ProductController {
 
     public void showAllProducts(List<Product> list) {
         System.out.println("Mostrando todos los productos: ");
-        for (Product product : this.listProducts) {
+        for (Product product : list) {
             System.out.println(
                     "--- Codigo: " + product.getUniqueCode() + ", Nombre: " + product.nameProduct + ", Categoria: "
                             + product.category + ", Precio: "

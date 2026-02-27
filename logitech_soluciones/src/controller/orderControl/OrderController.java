@@ -30,7 +30,7 @@ public class OrderController {
         System.out.println("Fecha generada: " + distpathDate);
 
         System.out.println("Estado de la orden: " + "PENDIENTE");
-        newOrder.setOrder(numOrder, distpathDate, "PENDIENTE", numOrder);
+        newOrder.setOrder(numOrder, distpathDate, "PENDIENTE", 0);
 
         System.out.println("Desea agregar productos a la order: si / no");
         String yesOrNo = scan.nextLine();
@@ -45,7 +45,7 @@ public class OrderController {
         System.out.println("\n Cuantos productos desea agregar a la order");
         int amountProductAdd = scan.nextInt();
         newOrder.setListProductsOrder(new ArrayList<Product>());
-        for (int i = 0; i < amountProductAdd; i++) {
+        for (int i = 0; i <= amountProductAdd; i++) {
             // Con la clase productControl llamamos a la funcion que controla la resta de
             // los productos y actualizarlos
             int subtractedStockProduct = productControl.subtractStock(scan);
@@ -69,6 +69,35 @@ public class OrderController {
         System.out.println("Orden creada ");
 
         this.listOrder.add(newOrder);
+    }
+
+    public void showOrderByNumOrder(Scanner scan, ProductController productControl) {
+        System.out.println("\n Escriba el numero de la orden");
+        int numOrder = scan.nextInt();
+
+        Order orderFound = null;
+
+        for (Order orderItem : this.listOrder) {
+            if (orderItem.getOrder().numOrder == numOrder) {
+                orderFound = orderItem;
+            }
+        }
+
+        if (orderFound == null) {
+            System.out.println("\n La orden no fue encontrada");
+            return;
+        }
+
+        System.out.println("\n --- Orden No. " + orderFound.numOrder + ", Fecha de despacho: " + orderFound.dispathDate
+                + ", Estado: " + orderFound.getOrderStatus() + " ---");
+
+        if (orderFound.getListProductsOrder().isEmpty()) {
+            System.out.println("\n La orden no tiene productos");
+            return;
+        }
+
+        productControl.showAllProducts(orderFound.getListProductsOrder());
+
     }
 
 }

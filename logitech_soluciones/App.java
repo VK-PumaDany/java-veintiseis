@@ -21,6 +21,7 @@ public class App {
             System.out.println("4. Ver Productos por NIT");
             System.out.println("5. Mostrar todos los Productos");
             System.out.println("6. Crear una nueva orden");
+            System.out.println("7. Mostrar orden por codigo");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -65,6 +66,10 @@ public class App {
                 case 6:
                     System.out.println("\n--- Crear nueva Orden ---");
                     newOrder.create(scan, newProduct);
+                    break;
+                case 7:
+                    System.out.println("\n--- Mostrar Orden por numero ---");
+                    newOrder.showOrderByNumOrder(scan, newProduct);
                     break;
 
                 case 0:
