@@ -75,12 +75,7 @@ public class ProductController {
         }
     }
 
-    public int subtractStock(Scanner scan) {
-        Product productFound = this.getProductByUniqueCode(scan);
-        if (productFound == null) {
-            System.out.println("Producto encontrado no encontrado");
-            return 0;
-        }
+    public int subtractStock(Scanner scan, Product productFound) {
         System.out.println("Producto encontrado: ");
         System.out.println("Escribe la cantidad de productos que necesitas: ");
         int stockSubtractWrited = scan.nextInt();
@@ -97,8 +92,12 @@ public class ProductController {
         Product productFound = null;
         System.out.println("Escribe el código del producto a buscar: ");
         int uniqueCodeInsert = scan.nextInt();
-        productFound = this.listProducts.stream().filter(p -> p.getUniqueCode() == uniqueCodeInsert).findAny()
-                .orElse(productFound);
+        productFound = this.listProducts.stream().filter(p -> p.getUniqueCode() == uniqueCodeInsert).findFirst()
+                .orElse(null);
+        if (productFound == null) {
+            System.out.println("Producto encontrado no encontrado");
+            return null;
+        }
         // for (Product productItem : this.listProducts) {
         // if (productItem.getUniqueCode() == uniqueCodeInsert) {
         // productFound = productItem;
@@ -154,5 +153,22 @@ public class ProductController {
         this.listProducts.add(productKipitos);
 
         this.showAllProducts();
+    }
+
+    public int calcTotalPriceProduct(Product productFound) {
+        return productFound.unitPrecie * productFound.inventoryStock;
+    }
+
+    public int calcTotalPriceListProduct(Scanner scan) {
+        Product productFound = this.getProductByUniqueCode(scan);
+        return productFound.unitPrecie * productFound.inventoryStock;
+    }
+
+    public int calcTotalPriceListProduct(Scanner scan, List<Product> productList) {
+        int savePriceProducts = 0;
+        for (Product itemProduct : productList) {
+            savePriceProducts = savePriceProducts + this.calcTotalPriceProduct(itemProduct);
+        }
+        return savePriceProducts;
     }
 }

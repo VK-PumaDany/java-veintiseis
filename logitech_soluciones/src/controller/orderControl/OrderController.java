@@ -45,17 +45,18 @@ public class OrderController {
         System.out.println("\n Cuantos productos desea agregar a la order");
         int amountProductAdd = scan.nextInt();
         newOrder.setListProductsOrder(new ArrayList<Product>());
-        for (int i = 0; i <= amountProductAdd; i++) {
-            // Con la clase productControl llamamos a la funcion que controla la resta de
-            // los productos y actualizarlos
-            int subtractedStockProduct = productControl.subtractStock(scan);
+        for (int i = 0; i < amountProductAdd; i++) {
             // Con la clase getProductByUniqueCode llamamos a la funcion que controla si el
             // producto existe
             Product getProductFound = productControl.getProductByUniqueCode(scan);
+            // Con la clase productControl llamamos a la funcion que controla la resta de
+            // los productos y actualizarlos
+            int subtract = productControl.subtractStock(scan, getProductFound);
             // Creamos un nuevo producto aparte desde cero para guardarlo en la orden
             Product saveProductStock = new Product();
+            saveProductStock.setUniqueCode(getProductFound.getUniqueCode());
             saveProductStock.setProduct(getProductFound.nameProduct, getProductFound.category,
-                    getProductFound.unitPrecie, subtractedStockProduct);
+                    getProductFound.unitPrecie, subtract);
             // Establecer el nit
             saveProductStock.setNitSupplier(getProductFound.getNitSupplier());
             // Obtenemos la lista de productos de la orden
@@ -71,7 +72,7 @@ public class OrderController {
         this.listOrder.add(newOrder);
     }
 
-    public void showOrderByNumOrder(Scanner scan, ProductController productControl) {
+    public Order getOrderByNumOrder(Scanner scan) {
         System.out.println("\n Escriba el numero de la orden");
         int numOrder = scan.nextInt();
 
@@ -82,13 +83,20 @@ public class OrderController {
                 orderFound = orderItem;
             }
         }
-
         if (orderFound == null) {
             System.out.println("\n La orden no fue encontrada");
-            return;
+            return null;
         }
 
-        System.out.println("\n --- Orden No. " + orderFound.numOrder + ", Fecha de despacho: " + orderFound.dispathDate
+        return orderFound;
+    }
+
+    public void showOrderByNumOrder(Scanner scan, ProductController productControl) {
+        Order orderFound = this.getOrderByNumOrder(scan);
+        if (orderFound == null)
+            return;
+
+        System.out.println("\n--- Orden No. " + orderFound.numOrder + ", Fecha de despacho: " + orderFound.dispathDate
                 + ", Estado: " + orderFound.getOrderStatus() + " ---");
 
         if (orderFound.getListProductsOrder().isEmpty()) {
@@ -97,7 +105,48 @@ public class OrderController {
         }
 
         productControl.showAllProducts(orderFound.getListProductsOrder());
-
+        int total = productControl.calcTotalPriceListProduct(scan, orderFound.getListProductsOrder());
+        System.out.println("--- Precio total :" + total + " ---");
     }
 
+    public void showAllOrder(ProductController productControl) {
+        if (this.listOrder.isEmpty()) {
+            System.out.println("No se han creado ninguna orden");
+            return;
+        }
+        System.out.println("--- Mostrando todas las ordenes: ---");
+        for (Order orderItem : this.listOrder) {
+            System.out
+                    .println("\n--- Orden No. " + orderItem.numOrder + ", Fecha de despacho: " + orderItem.dispathDate
+                            + ", Estado: " + orderItem.getOrderStatus() + " ---");
+            productControl.showAllProducts(orderItem.getListProductsOrder());
+        }
+    }
+
+    public void updateOrderStatus(Scanner scan) {
+        Order orderFound = this.getOrderByNumOrder(scan);
+        if (orderFound == null)
+            return;
+        System.out.println("--- Escriba el numero si fue despachada o cancelada la orden ---");
+
+        System.out.println("--- 1. Despachada ---");
+        System.out.println("--- 2. Cancelada ---");
+        scan.nextLine();
+        String selector = scan.nextLine();
+
+        switch (selector) {
+            case "1":
+                orderFound.setOrderStatus("Despachada");
+                System.out.println("Orden despachada con exito");
+                break;
+            case "2":
+                orderFound.setOrderStatus("Cancelada");
+                System.out.println("Orden cancelada");
+                break;
+            default:
+                System.out.println("--- La orden no se le pudo actualizar el estado ---");
+                break;
+        }
+
+    }
 }

@@ -22,6 +22,8 @@ public class App {
             System.out.println("5. Mostrar todos los Productos");
             System.out.println("6. Crear una nueva orden");
             System.out.println("7. Mostrar orden por codigo");
+            System.out.println("8. Mostrar todas las ordenes");
+            System.out.println("9. Actualizar estado de la orden");
             // System.out.println("100. Auto completar");
             System.out.println("101. Auto registrar proveedores total 2");
             System.out.println("102. Auto registrar productos total 15");
@@ -74,6 +76,14 @@ public class App {
                 case 7:
                     System.out.println("\n--- Mostrar Orden por numero ---");
                     newOrder.showOrderByNumOrder(scan, newProduct);
+                    break;
+                case 8:
+                    System.out.println("\n--- Mostrar todas las ordenes ---");
+                    newOrder.showAllOrder(newProduct);
+                    break;
+                case 9:
+                    System.out.println("\n--- Actualizar estado de la orden ---");
+                    newOrder.updateOrderStatus(scan);
                     break;
                 case 101:
                     System.out.println("\n--- Auto Registrar proveedores ---");
