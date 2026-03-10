@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import src.controller.supplierControl.SupplierController;
 import src.model.product.Product;
+import src.model.supplier.Supplier;
 import src.util.Util;
 
 public class ProductController {
@@ -53,7 +55,9 @@ public class ProductController {
         System.out.println("Mostrando todos los productos: ");
         for (Product product : list) {
             System.out.println(
-                    "--- Codigo: " + product.getUniqueCode() + ", Nombre: " + product.nameProduct + ", Categoria: "
+                    "--- Nit " + product.getNitSupplier() +
+                            ", Codigo: " + product.getUniqueCode() + ", Nombre: " + product.nameProduct
+                            + ", Categoria: "
                             + product.category + ", Precio: "
                             + product.unitPrecie + ", Stock Disponible: " + product.inventoryStock + " ---");
         }
@@ -101,5 +105,54 @@ public class ProductController {
         // }
         // }
         return productFound;
+    }
+
+    public void autoCreateProducts(SupplierController controlSupplier) {
+        if (controlSupplier.getListSuplier().isEmpty()) {
+            System.out.println("No se puede ejecutar Auto Creacion de productos si no hay proveedores");
+            return;
+        }
+        List<Supplier> listSuppliers = controlSupplier.getListSuplier();
+        Supplier retailMin = listSuppliers.get(0);
+        Supplier retailMax = listSuppliers.get(1);
+
+        Util utils = new Util();
+        Product productChicle = new Product();
+        productChicle.setUniqueCode(utils.numRandom(1000));
+        productChicle.setProduct("Chicle", "dulce", 10, 999);
+        productChicle.setNitSupplier(retailMin.nit);
+        this.listProducts.add(productChicle);
+
+        Product productBomBomBun = new Product();
+        productBomBomBun.setUniqueCode(utils.numRandom(1000));
+        productBomBomBun.setProduct("BomBomBun", "dulce", 18, 500);
+        productBomBomBun.setNitSupplier(retailMin.nit);
+        this.listProducts.add(productBomBomBun);
+
+        Product productBianchi = new Product();
+        productBianchi.setUniqueCode(utils.numRandom(1000));
+        productBianchi.setProduct("Bianchi", "dulce", 3, 999);
+        productBianchi.setNitSupplier(retailMin.nit);
+        this.listProducts.add(productBianchi);
+
+        Product productChocolateJet = new Product();
+        productChocolateJet.setUniqueCode(utils.numRandom(1000));
+        productChocolateJet.setProduct("Chocolatina Jet", "dulce", 10, 500);
+        productChocolateJet.setNitSupplier(retailMax.nit);
+        this.listProducts.add(productChocolateJet);
+
+        Product productJumbo = new Product();
+        productJumbo.setUniqueCode(utils.numRandom(1000));
+        productJumbo.setProduct("Chocolatina Jumbo", "dulce", 16, 300);
+        productJumbo.setNitSupplier(retailMax.nit);
+        this.listProducts.add(productJumbo);
+
+        Product productKipitos = new Product();
+        productKipitos.setUniqueCode(utils.numRandom(1000));
+        productKipitos.setProduct("Kipitos", "dulce", 8, 699);
+        productKipitos.setNitSupplier(retailMax.nit);
+        this.listProducts.add(productKipitos);
+
+        this.showAllProducts();
     }
 }
